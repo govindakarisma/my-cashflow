@@ -16,12 +16,11 @@ class CashflowSeeder extends Seeder
     public function run()
     {
         Cashflow::create([
-            'cf_id' => 'CF1-30122022',
+            'cfid' => 'CF1-30122022',
             'slug' => 'cf1-30122022',
-            'date' => '30/12/2022 07:29:46',
-            'resource_id' => 2,
+            'resource_id' => 5,
             'category_id' => 1,
-            'subcategory_id' => 3,
+            'subcategory_id' => 6,
             'desc' => 'First Sallary',
             'debit' => 9472000,
             'credit' => 0,

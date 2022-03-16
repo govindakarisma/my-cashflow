@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cashflow;
+use App\Models\Category;
+use App\Models\Resource;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
 
 class CashflowController extends Controller
@@ -15,7 +18,8 @@ class CashflowController extends Controller
     public function index()
     {
         return view('cashflows.index', [
-            "page" => "Cash Flow"
+            "page" => "Cash Flow",
+            "cashflows" => collect(Cashflow::all())
         ]);
     }
 
@@ -26,7 +30,12 @@ class CashflowController extends Controller
      */
     public function create()
     {
-        //
+        return view('cashflows.create', [
+            "page" => "Cash Flow - Add Transaction",
+            'resources' => collect(Resource::latest()->get()),
+            'categories' => collect(Category::latest()->get()),
+            'subcategories' => collect(Subcategory::latest()->get())
+        ]);
     }
 
     /**
@@ -37,7 +46,21 @@ class CashflowController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'cfid' => 'required',
+            'slug' => 'required|unique:cashflows',
+            'made_on' => 'nullable|date',
+            'resource_id' => 'required',
+            'category_id' => 'required',
+            'subcategory_id' => 'nullable',
+            'desc' => 'nullable',
+            'debit' => 'nullable|integer',
+            'credit' => 'nullable|integer'
+        ]);
+
+        Cashflow::create($validatedData);
+
+        return redirect('/cashflow')->with('toast_success', 'Add Transaction Successfull');
     }
 
     /**

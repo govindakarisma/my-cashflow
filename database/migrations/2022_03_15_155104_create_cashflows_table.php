@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('cashflows', function (Blueprint $table) {
             $table->id();
-            $table->string('cf_id');
+            $table->string('cfid');
             $table->string('slug')->unique();
-            $table->timestamp('date')->nullable();
-            $table->foreignId('resource_id')->nullable();
-            $table->foreignId('category_id')->nullable();
+            $table->timestamp('made_on')->nullable();
+            $table->foreignId('resource_id');
+            $table->foreignId('category_id');
             $table->foreignId('subcategory_id')->nullable();
             $table->text('desc')->nullable();
             $table->integer('debit')->nullable();

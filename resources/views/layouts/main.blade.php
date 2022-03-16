@@ -23,7 +23,6 @@
     @include('layouts.header')
     <div class="container-fluid py-4">
       @yield('content')
-      @include('layouts.footer')
     </div>
   </main>
   @include('layouts.config')

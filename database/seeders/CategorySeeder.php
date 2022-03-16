@@ -16,6 +16,16 @@ class CategorySeeder extends Seeder
     public function run()
     {
         Category::create([
+            'name' => 'Sallary',
+            'slug' => 'sallary',
+        ]);
+
+        Category::create([
+            'name' => 'Income',
+            'slug' => 'income',
+        ]);
+
+        Category::create([
             'name' => 'Makan',
             'slug' => 'makan',
         ]);
@@ -28,6 +38,36 @@ class CategorySeeder extends Seeder
         Category::create([
             'name' => 'Kendaraan',
             'slug' => 'kendaraan',
+        ]);
+
+        Category::create([
+            'name' => 'Tempat Tinggal',
+            'slug' => 'tempat-tinggal',
+        ]);
+
+        Category::create([
+            'name' => 'Lent',
+            'slug' => 'lent',
+        ]);
+
+        Category::create([
+            'name' => 'Borrow',
+            'slug' => 'borrow',
+        ]);
+
+        Category::create([
+            'name' => 'Deposit',
+            'slug' => 'deposit',
+        ]);
+
+        Category::create([
+            'name' => 'Withdraw',
+            'slug' => 'withdraw',
+        ]);
+
+        Category::create([
+            'name' => 'Lain-lain',
+            'slug' => 'Lain-lain',
         ]);
     }
 }

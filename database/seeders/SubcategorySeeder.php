@@ -29,5 +29,20 @@ class SubcategorySeeder extends Seeder
             'name' => 'Vios',
             'slug' => 'vios',
         ]);
+
+        Subcategory::create([
+            'name' => 'Ampera',
+            'slug' => 'ampera',
+        ]);
+
+        Subcategory::create([
+            'name' => 'Restoran',
+            'slug' => 'restoran',
+        ]);
+
+        Subcategory::create([
+            'name' => 'None',
+            'slug' => 'none',
+        ]);
     }
 }

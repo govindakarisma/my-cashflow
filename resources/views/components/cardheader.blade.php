@@ -11,7 +11,7 @@
               </h5>
               <p class="mb-0">
                 On
-                <span class="text-success text-sm font-weight-bolder">March 2022</span>
+                <span class="text-success text-sm font-weight-bolder">{{date('F Y')}}</span>
               </p>
             </div>
           </div>
