@@ -52,7 +52,7 @@
       <div class="mt-2 mb-5 d-flex">
         <h6 class="mb-0">Light / Dark</h6>
         <div class="form-check form-switch ps-0 ms-auto my-auto">
-          <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="lightMode(this)">
+          <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
         </div>
       </div>
       <a class="btn bg-gradient-dark w-100" href="https://www.creative-tim.com/product/argon-dashboard">Free Download</a>

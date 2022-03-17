@@ -13,6 +13,7 @@
           </div>
           <div class="col-6 text-end">
             <a href="javascript:;" class="btn bg-gradient-success me-1"><i class="fas fa-file-excel"></i>&nbsp;&nbsp;Excel</a>
+            <a href="javascript:;" class="btn bg-gradient-info me-1"><i class="fas fa-file-import"></i>&nbsp;&nbsp;Import</a>
             <a href="/cashflow/create" class="btn bg-gradient-primary"><i class="fas fa-plus"></i>&nbsp;&nbsp;Transaction</a>
           </div>
         </div>
