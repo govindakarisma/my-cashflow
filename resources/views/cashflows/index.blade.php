@@ -12,15 +12,15 @@
             <h5>Cash Flow {{date('Y')}}</h5>
           </div>
           <div class="col-6 text-end">
-            <a href="javascript:;" class="btn bg-gradient-success me-1"><i class="fas fa-file-excel"></i>&nbsp;&nbsp;Excel</a>
-            <a href="javascript:;" class="btn bg-gradient-info me-1"><i class="fas fa-file-import"></i>&nbsp;&nbsp;Import</a>
+            <a href="/exportCashflowExcel" class="btn bg-gradient-success me-1"><i class="fas fa-file-excel"></i>&nbsp;&nbsp;Excel</a>
+            <a class="btn bg-gradient-info me-1" data-bs-toggle="modal" data-bs-target="#importModal"><i class="fas fa-file-import"></i>&nbsp;&nbsp;Import</a>
             <a href="/cashflow/create" class="btn bg-gradient-primary"><i class="fas fa-plus"></i>&nbsp;&nbsp;Transaction</a>
           </div>
         </div>
       </div>
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-hover">
+          <table class="table table-hover" id="theTable">
             <thead>
               <tr>
                 <th scope="col">No</th>
@@ -51,8 +51,8 @@
                 <td>Current Balanced</td>
                 <td>
                   <div class="d-flex">
-                    <a href="#" class="btn bg-gradient-info shadow-sm mx-2"><i class="fas fa-pen"></i></a>
-                    <a href="#" class="btn bg-gradient-danger shadow-sm" data-bs-toggle="modal" data-bs-target="#delete-id"><i class="fas fa-trash"></i></a>
+                    <a href="#" class="btn bg-gradient-light text-primary mx-2"><i class="fas fa-pen"></i></a>
+                    <a class="btn bg-gradient-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-{{$cashflow->slug}}"><i class="fas fa-trash"></i></a>
                   </div>
                 </td>
               </tr>
@@ -65,3 +65,69 @@
   </div>
 </div>
 @endsection
+
+@section('delete-modal')
+@foreach($cashflows as $cashflow)
+<div class="modal fade" id="delete-{{ $cashflow->slug }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <span>Yakin ingin menghapus data transaksi {{ $cashflow->cfid }} - {{ $cashflow->desc }}?</span>
+        <div class="alert alert-warning text-white mt-3">
+          <i class="bi bi-exclamation-triangle"></i> Data akan dihapus dan tidak dapat dikembalikan
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batal</button>
+        <form action="/cashflow/{{ $cashflow->slug }}" method="POST">
+          @method('delete')
+          @csrf
+          <button class="btn bg-gradient-danger border-0">
+            <span>Ya, Hapus</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+@endsection
+
+@section('import-modal')
+<div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="importModalLabel">Import Excel</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-warning text-center text-white">
+          <i class="bi bi-exclamation-triangle"></i> Pastikan format excel sesuai template! <a href="/excelTemplate" class="fw-normal"></i> Unduh Template</a>
+        </div>
+        <form action="/importCashflowExcel" method="POST" enctype="multipart/form-data">
+          @csrf
+          <input class="form-control" type="file" name="cashflows" required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batal</button>
+        <button type="submit" class="btn bg-gradient-info">Import</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
+
+@push('script-bottom-start')
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.5/datatables.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#theTable').DataTable();
+  });
+</script>
+@endpush

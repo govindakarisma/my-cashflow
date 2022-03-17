@@ -105,6 +105,8 @@ class CashflowController extends Controller
      */
     public function destroy(Cashflow $cashflow)
     {
-        //
+        Cashflow::destroy($cashflow->id);
+
+        return redirect('/cashflow')->with('toast_success', 'Berhasil Menghapus <br>' . $cashflow->cfid . ' - ' . $cashflow->desc);
     }
 }
