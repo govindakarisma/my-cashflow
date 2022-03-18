@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('cfid');
             $table->string('slug')->unique();
-            $table->timestamp('made_on')->nullable();
+            $table->date('action_at');
             $table->foreignId('resource_id');
             $table->foreignId('category_id');
             $table->foreignId('subcategory_id')->nullable();

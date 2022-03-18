@@ -17,9 +17,33 @@ class CashflowController extends Controller
      */
     public function index()
     {
+
+        function sumCredit()
+        {
+            $cashflows = collect(Cashflow::all());
+
+            foreach ($cashflows as $cashflow) {
+                $credit = $cashflow->whereMonth('action_at', date('m'))->sum('credit');
+                $debit = $cashflow->whereMonth('action_at', date('m'))->sum('debit');
+                $allcred = $cashflow->sum('credit');
+                $alldebt = $cashflow->sum('debit');
+            }
+
+            $balance = $alldebt - $allcred;
+
+            $sum = [$credit, $debit, $balance];
+
+            return $sum;
+        }
+
+        $sumCash = sumCredit();
+
         return view('cashflows.index', [
             "page" => "Cash Flow",
-            "cashflows" => collect(Cashflow::all())
+            "cashflows" => collect(Cashflow::all()),
+            "sumCredit" => $sumCash[0],
+            "sumDebit" => $sumCash[1],
+            "sumBalance" => $sumCash[2],
         ]);
     }
 
@@ -49,7 +73,7 @@ class CashflowController extends Controller
         $validatedData = $request->validate([
             'cfid' => 'required',
             'slug' => 'required|unique:cashflows',
-            'made_on' => 'nullable|date',
+            'action_at' => 'required',
             'resource_id' => 'required',
             'category_id' => 'required',
             'subcategory_id' => 'nullable',

@@ -2,7 +2,107 @@
 
 @section('content')
 @include('sweetalert::alert')
-@include('components.cardheader')
+<div class="row">
+  <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-body p-3">
+        <div class="row">
+          <div class="col-8">
+            <div class="numbers">
+              <p class="text-sm mb-0 text-uppercase font-weight-bold">Credit</p>
+              <h5 class="font-weight-bolder">
+                Rp{{ number_format($sumCredit,0,",",".") }}
+              </h5>
+              <p class="mb-0">
+                On
+                <span class="text-success text-sm font-weight-bolder">{{date('F Y')}}</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-4 text-end">
+            <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+              <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-body p-3">
+        <div class="row">
+          <div class="col-8">
+            <div class="numbers">
+              <p class="text-sm mb-0 text-uppercase font-weight-bold">Debit</p>
+              <h5 class="font-weight-bolder">
+                Rp{{ number_format($sumDebit,0,",",".") }}
+              </h5>
+              <p class="mb-0">
+                On
+                <span class="text-success text-sm font-weight-bolder">{{date('F Y')}}</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-4 text-end">
+            <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+              <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-body p-3">
+        <div class="row">
+          <div class="col-8">
+            <div class="numbers">
+              <p class="text-sm mb-0 text-uppercase font-weight-bold">My Balance</p>
+              <h5 class="font-weight-bolder">
+                Rp{{ number_format($sumBalance,0,",",".") }}
+              </h5>
+              <p class="mb-0">
+                Today
+                <span class="text-success text-sm font-weight-bolder">{{date('d F Y')}}</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-4 text-end">
+            <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+              <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6">
+    <div class="card">
+      <div class="card-body p-3">
+        <div class="row">
+          <div class="col-8">
+            <div class="numbers">
+              <p class="text-sm mb-0 text-uppercase font-weight-bold">Another Income</p>
+              <h5 class="font-weight-bolder">
+                Rp1.500.000
+              </h5>
+              <p class="mb-0">
+                <span class="text-success text-sm font-weight-bolder">2022</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-4 text-end">
+            <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+              <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="row mt-4">
   <div class="col-12">
     <div class="card mb-4">
@@ -41,14 +141,14 @@
               <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
                 <td>{{ $cashflow->cfid }}</td>
-                <td>{{ $cashflow->updated_at->format('d F Y') }}</td>
+                <td>{{ date('d F Y', strtotime($cashflow->action_at)) }}</td>
                 <td class="text-center">{{ $cashflow->resource->name }}</td>
                 <td>{{ $cashflow->category->name }}</td>
                 <td>{{ $cashflow->subcategory->name }}</td>
                 <td>{{ $cashflow->desc }}</td>
                 <td>Rp{{ number_format($cashflow->debit,0,",",".") }}</td>
                 <td>Rp{{ number_format($cashflow->credit,0,",",".") }}</td>
-                <td>Current Balanced</td>
+                <td>Rp{{ number_format($cashflow->whereMonth('action_at', date('m'))->sum('credit'),0,",",".") }}</td>
                 <td>
                   <div class="d-flex">
                     <a href="#" class="btn bg-gradient-light text-primary mx-2"><i class="fas fa-pen"></i></a>

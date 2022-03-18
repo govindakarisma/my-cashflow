@@ -81,7 +81,7 @@
               <small class="fw-normal"><a href="/categories/create" class="text-primary"><i class="fas fa-list"></i> Create new category</a></small>
             </div>
             <div class="col-md-4">
-              <select class="form-select" name="subcategory_id" id="subcategory_id">
+              <select class="form-select @error('subcategory_id') is-invalid @enderror" name="subcategory_id" id="subcategory_id">
                 <option>Subcategory</option>
                 @foreach($subcategories as $subcategory)
                 @if( old('subcategory_id') == $subcategory->id )
@@ -109,9 +109,9 @@
             </div>
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="date" name="made_on" class="form-control @error('made_on') is-invalid @enderror" id="made_on" placeholder="Created at" value="{{ old('made_on') }}">
-                <label for="made_on">Created at</label>
-                @error('made_on')
+                <input type="date" name="action_at" class="form-control @error('action_at') is-invalid @enderror" id="action_at" placeholder="Created at" value="{{ old('action_at') }}">
+                <label for="action_at">Created at</label>
+                @error('action_at')
                 <div class="invalid-feedback">
                   {{ $message }}
                 </div>
