@@ -24,6 +24,7 @@ return new class extends Migration
             $table->text('desc')->nullable();
             $table->integer('debit')->nullable();
             $table->integer('credit')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

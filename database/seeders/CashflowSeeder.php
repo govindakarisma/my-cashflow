@@ -18,6 +18,7 @@ class CashflowSeeder extends Seeder
         Cashflow::create([
             'cfid' => 'CF1-30122022',
             'slug' => 'cf1-30122022',
+            'action_at' => '2021-12-30',
             'resource_id' => 5,
             'category_id' => 1,
             'subcategory_id' => 6,

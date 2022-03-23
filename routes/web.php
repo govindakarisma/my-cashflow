@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CashflowController;
 use App\Http\Controllers\EximportController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ResourceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,7 @@ use App\Http\Controllers\DashboardController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('/cashflow', CashflowController::class);
+Route::resource('/resource', ResourceController::class);
 
 //Route Export Import File
 Route::get('/exportCashflowExcel', [EximportController::class, 'exportCashflowExcel'])->name('exportCashflowExcel');

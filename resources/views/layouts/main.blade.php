@@ -39,7 +39,7 @@
   <script src="/template-assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="/template-assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="/template-assets/js/plugins/chartjs.min.js"></script>
-  <script src="/my-assets/js/fake-data.js"></script>
+  @stack('script-bottom-end')
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

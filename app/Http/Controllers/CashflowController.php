@@ -31,7 +31,11 @@ class CashflowController extends Controller
 
             $balance = $alldebt - $allcred;
 
-            $sum = [$credit, $debit, $balance];
+            $sum = [
+                "credit" => $credit,
+                "debit" => $debit,
+                "balance" => $balance
+            ];
 
             return $sum;
         }
@@ -40,10 +44,10 @@ class CashflowController extends Controller
 
         return view('cashflows.index', [
             "page" => "Cash Flow",
-            "cashflows" => collect(Cashflow::all()),
-            "sumCredit" => $sumCash[0],
-            "sumDebit" => $sumCash[1],
-            "sumBalance" => $sumCash[2],
+            "cashflows" => collect(Cashflow::latest("action_at")->get()),
+            "sumCredit" => $sumCash["credit"],
+            "sumDebit" => $sumCash["debit"],
+            "sumBalance" => $sumCash["balance"],
         ]);
     }
 
@@ -84,7 +88,7 @@ class CashflowController extends Controller
 
         Cashflow::create($validatedData);
 
-        return redirect('/cashflow')->with('toast_success', 'Add Transaction Successfull');
+        return redirect('/cashflow')->with('toast_success', 'Add Transaction Successful!!!');
     }
 
     /**
@@ -106,7 +110,13 @@ class CashflowController extends Controller
      */
     public function edit(Cashflow $cashflow)
     {
-        //
+        return view('cashflows.edit', [
+            "page" => "Cash Flow - Edit Transaction",
+            "cashflow" => $cashflow,
+            "resources" => collect(Resource::latest()->get()),
+            "categories" => collect(Category::latest()->get()),
+            "subcategories" => collect(Subcategory::latest()->get())
+        ]);
     }
 
     /**
@@ -118,7 +128,26 @@ class CashflowController extends Controller
      */
     public function update(Request $request, Cashflow $cashflow)
     {
-        //
+        $rules = [
+            'cfid' => 'required',
+            'action_at' => 'required',
+            'resource_id' => 'required',
+            'category_id' => 'required',
+            'subcategory_id' => 'nullable',
+            'desc' => 'nullable',
+            'debit' => 'nullable|integer',
+            'credit' => 'nullable|integer',
+        ];
+
+        if ($request->slug != $cashflow->slug) {
+            $rules['slug'] = 'required|unique:cashflows';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        Cashflow::where('id', $cashflow->id)->update($validatedData);
+
+        return redirect('/cashflow')->with('toast_success', 'Berhasil Mengubah <br>' . $cashflow->cfid);
     }
 
     /**

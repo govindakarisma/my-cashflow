@@ -86,7 +86,7 @@
             <div class="numbers">
               <p class="text-sm mb-0 text-uppercase font-weight-bold">Another Income</p>
               <h5 class="font-weight-bolder">
-                Rp1.500.000
+                Rp0
               </h5>
               <p class="mb-0">
                 <span class="text-success text-sm font-weight-bolder">2022</span>
@@ -113,8 +113,8 @@
           </div>
           <div class="col-6 text-end">
             <a href="/exportCashflowExcel" class="btn bg-gradient-success me-1"><i class="fas fa-file-excel"></i>&nbsp;&nbsp;Excel</a>
-            <a class="btn bg-gradient-info me-1" data-bs-toggle="modal" data-bs-target="#importModal"><i class="fas fa-file-import"></i>&nbsp;&nbsp;Import</a>
-            <a href="/cashflow/create" class="btn bg-gradient-primary"><i class="fas fa-plus"></i>&nbsp;&nbsp;Transaction</a>
+            <a class="btn bg-gradient-primary me-1" data-bs-toggle="modal" data-bs-target="#importModal"><i class="fas fa-file-import"></i>&nbsp;&nbsp;Import</a>
+            <a href="/cashflow/create" class="btn bg-gradient-info"><i class="fas fa-plus"></i>&nbsp;&nbsp;Transaction</a>
           </div>
         </div>
       </div>
@@ -132,7 +132,6 @@
                 <th scope="col">Description</th>
                 <th scope="col">Debit</th>
                 <th scope="col">Credit</th>
-                <th scope="col">Balance</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -148,11 +147,10 @@
                 <td>{{ $cashflow->desc }}</td>
                 <td>Rp{{ number_format($cashflow->debit,0,",",".") }}</td>
                 <td>Rp{{ number_format($cashflow->credit,0,",",".") }}</td>
-                <td>Rp{{ number_format($cashflow->whereMonth('action_at', date('m'))->sum('credit'),0,",",".") }}</td>
                 <td>
                   <div class="d-flex">
-                    <a href="#" class="btn bg-gradient-light text-primary mx-2"><i class="fas fa-pen"></i></a>
-                    <a class="btn bg-gradient-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-{{$cashflow->slug}}"><i class="fas fa-trash"></i></a>
+                    <a href="/cashflow/{{$cashflow->slug}}/edit" class="btn bg-gradient-success mx-2"><i class="fas fa-pen"></i></a>
+                    <a class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#delete-{{$cashflow->slug}}"><i class="fas fa-trash"></i></a>
                   </div>
                 </td>
               </tr>

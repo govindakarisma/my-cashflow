@@ -145,7 +145,7 @@
             </div>
           </div>
 
-          <button type="submit" class="btn bg-gradient-primary mt-3 float-end">Add Data</button>
+          <button type="submit" class="btn bg-gradient-success mt-3 float-end">Add Data</button>
         </form>
 
       </div>

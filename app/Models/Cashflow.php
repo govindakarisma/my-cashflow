@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Cashflow extends Model
 {
-    use HasFactory;
+    use SoftDeletes;
 
-    protected $guarded = ["id", "made_on"];
+    protected $hidden;
+    protected $table = "cashflows";
+    protected $guarded = ["id"];
 
     public function resource()
     {

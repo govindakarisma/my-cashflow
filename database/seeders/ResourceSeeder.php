@@ -36,6 +36,11 @@ class ResourceSeeder extends Seeder
         ]);
 
         Resource::create([
+            'name' => 'Bank Jago',
+            'slug' => 'bank-jago',
+        ]);
+
+        Resource::create([
             'name' => 'BRK',
             'slug' => 'brk',
         ]);

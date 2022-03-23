@@ -82,7 +82,7 @@
             <div class="numbers">
               <p class="text-sm mb-0 text-uppercase font-weight-bold">Another Income</p>
               <h5 class="font-weight-bolder">
-                Rp1.500.000
+                Rp0
               </h5>
               <p class="mb-0">
                 <span class="text-success text-sm font-weight-bolder">2022</span>

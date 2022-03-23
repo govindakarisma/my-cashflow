@@ -29,3 +29,7 @@
   </div>
 </div>
 @endsection
+
+@push('script-bottom-end')
+<script src="/my-assets/js/fake-data.js"></script>
+@endpush
