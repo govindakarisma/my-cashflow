@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CashflowController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EximportController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SubcategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,8 @@ use App\Http\Controllers\ResourceController;
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('/cashflow', CashflowController::class);
 Route::resource('/resource', ResourceController::class);
+Route::resource('/category', CategoryController::class);
+Route::resource('/subcategory', SubcategoryController::class);
 
 //Route Export Import File
 Route::get('/exportCashflowExcel', [EximportController::class, 'exportCashflowExcel'])->name('exportCashflowExcel');

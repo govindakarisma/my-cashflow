@@ -109,7 +109,7 @@
       <div class="card-header pb-0">
         <div class="row">
           <div class="col-6 d-flex align-items-center">
-            <h5>Cash Flow {{date('Y')}}</h5>
+            <h5>My Cashflow {{date('Y')}}</h5>
           </div>
           <div class="col-6 text-end">
             <a href="/exportCashflowExcel" class="btn bg-gradient-success me-1"><i class="fas fa-file-excel"></i>&nbsp;&nbsp;Excel</a>
@@ -170,22 +170,22 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi</h5>
+        <h5 class="modal-title" id="deleteModalLabel">Confirmation</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <span>Yakin ingin menghapus data transaksi {{ $cashflow->cfid }} - {{ $cashflow->desc }}?</span>
+        <span>Are you sure to delete {{ $cashflow->cfid }} - {{ $cashflow->desc }}?</span>
         <div class="alert alert-warning text-white mt-3">
-          <i class="bi bi-exclamation-triangle"></i> Data akan dihapus dan tidak dapat dikembalikan
+          <i class="bi bi-exclamation-triangle"></i> Data will be deleted and can't be restored!
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Batal</button>
+        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancel</button>
         <form action="/cashflow/{{ $cashflow->slug }}" method="POST">
           @method('delete')
           @csrf
           <button class="btn bg-gradient-danger border-0">
-            <span>Ya, Hapus</span>
+            <span>Yes, Sure</span>
           </button>
         </form>
       </div>

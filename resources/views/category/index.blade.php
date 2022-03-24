@@ -8,10 +8,10 @@
       <div class="card-header pb-0">
         <div class="row">
           <div class="col-6 d-flex align-items-center">
-            <h5>Resource of Funds</h5>
+            <h5>Category</h5>
           </div>
           <div class="col-6 text-end">
-            <a href="/resource/create" class="btn bg-gradient-info"><i class="fas fa-plus"></i>&nbsp;&nbsp;Resource</a>
+            <a href="/category/create" class="btn bg-gradient-info"><i class="fas fa-plus"></i>&nbsp;&nbsp;Resource</a>
           </div>
         </div>
       </div>
@@ -22,18 +22,20 @@
               <tr>
                 <th scope="col" width="50">No</th>
                 <th scope="col">Name</th>
+                <th scope="col">Description</th>
                 <th scope="col" width="100">Actions</th>
               </tr>
             </thead>
             <tbody>
-              @foreach($resources as $resource)
+              @foreach($categories as $category)
               <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
-                <td>{{ $resource->name }}</td>
+                <td>{{ $category->name }}</td>
+                <td>{{ $category->desc }}</td>
                 <td>
                   <div class="d-flex">
-                    <a href="/resource/{{$resource->slug}}/edit" class="btn bg-gradient-success mx-2"><i class="fas fa-pen"></i></a>
-                    <a class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#delete-{{$resource->slug}}"><i class="fas fa-trash"></i></a>
+                    <a href="/category/{{$category->slug}}/edit" class="btn bg-gradient-success mx-2"><i class="fas fa-pen"></i></a>
+                    <a class="btn bg-gradient-danger" data-bs-toggle="modal" data-bs-target="#delete-{{$category->slug}}"><i class="fas fa-trash"></i></a>
                   </div>
                 </td>
               </tr>
@@ -48,23 +50,23 @@
 @endsection
 
 @section('delete-modal')
-@foreach($resources as $resource)
-<div class="modal fade" id="delete-{{ $resource->slug }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+@foreach($categories as $category)
+<div class="modal fade" id="delete-{{ $category->slug }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi</h5>
+        <h5 class="modal-title" id="deleteModalLabel">Confirmation</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <span>Are you sure to delete data Resource <b>{{ $resource->name }}</b> ?</span>
+        <span>Are you sure to delete category <b>{{ $category->name }}</b> ?</span>
         <div class="alert alert-warning text-white mt-3">
           <i class="bi bi-exclamation-triangle"></i> Data will be deleted and can't be restored!
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancel</button>
-        <form action="/resource/{{ $resource->slug }}" method="POST">
+        <form action="/category/{{ $category->slug }}" method="POST">
           @method('delete')
           @csrf
           <button class="btn bg-gradient-danger border-0">

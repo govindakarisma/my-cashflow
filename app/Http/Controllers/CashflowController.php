@@ -88,7 +88,7 @@ class CashflowController extends Controller
 
         Cashflow::create($validatedData);
 
-        return redirect('/cashflow')->with('toast_success', 'Add Transaction Successful!!!');
+        return redirect('/cashflow')->with('toast_success', 'Add Transaction ' . $request->desc . ' has Successful!');
     }
 
     /**
@@ -147,7 +147,7 @@ class CashflowController extends Controller
 
         Cashflow::where('id', $cashflow->id)->update($validatedData);
 
-        return redirect('/cashflow')->with('toast_success', 'Berhasil Mengubah <br>' . $cashflow->cfid);
+        return redirect('/cashflow')->with('toast_success', 'Edit Transaction ' . $request->desc . ' has Successful!');
     }
 
     /**
@@ -160,6 +160,6 @@ class CashflowController extends Controller
     {
         Cashflow::destroy($cashflow->id);
 
-        return redirect('/cashflow')->with('toast_success', 'Berhasil Menghapus <br>' . $cashflow->cfid . ' - ' . $cashflow->desc);
+        return redirect('/cashflow')->with('toast_success', 'Delete Transaction ' . $cashflow->cfid . ' - ' . $cashflow->desc . ' has Successful!');
     }
 }

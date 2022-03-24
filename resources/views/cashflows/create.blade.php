@@ -60,7 +60,7 @@
                 {{ $message }}
               </div>
               @enderror
-              <small class="fw-normal"><a href="/resources/create" class="text-success"><i class="fas fa-money-bill-wave-alt"></i> Create new resource</a></small>
+              <small class="fw-normal"><a href="/resource/create" class="text-success"><i class="fas fa-money-bill-wave-alt"></i> Create new resource</a></small>
             </div>
             <div class="col-md-4">
               <select class="form-select @error('resource_id') is-invalid @enderror" name="category_id" id="category_id">

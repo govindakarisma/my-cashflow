@@ -70,7 +70,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="#">
+        <a class="nav-link {{ Request::is('category*') ? 'active' : '' }}" href="/category">
           <div class="icon icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
             <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
           </div>
@@ -78,7 +78,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="#">
+        <a class="nav-link {{ Request::is('subcategory*') ? 'active' : '' }}" href="/subcategory">
           <div class="icon icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
             <i class="ni ni-collection text-info text-sm opacity-10"></i>
           </div>

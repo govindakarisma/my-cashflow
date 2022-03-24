@@ -61,7 +61,7 @@
                 {{ $message }}
               </div>
               @enderror
-              <small class="fw-normal"><a href="/resources/create" class="text-success"><i class="fas fa-money-bill-wave-alt"></i> Create new resource</a></small>
+              <small class="fw-normal"><a href="/resource/create" class="text-success"><i class="fas fa-money-bill-wave-alt"></i> Create new resource</a></small>
             </div>
             <div class="col-md-4">
               <select class="form-select @error('resource_id') is-invalid @enderror" name="category_id" id="category_id">
@@ -79,7 +79,7 @@
                 {{ $message }}
               </div>
               @enderror
-              <small class="fw-normal"><a href="/categories/create" class="text-primary"><i class="fas fa-list"></i> Create new category</a></small>
+              <small class="fw-normal"><a href="/category/create" class="text-primary"><i class="fas fa-list"></i> Create new category</a></small>
             </div>
             <div class="col-md-4">
               <select class="form-select @error('subcategory_id') is-invalid @enderror" name="subcategory_id" id="subcategory_id">
@@ -92,7 +92,7 @@
                 @endif
                 @endforeach
               </select>
-              <small class="fw-normal"><a href="/subcategories/create" class="text-info"><i class="fas fa-list-ul"></i> Create new subcategory</a></small>
+              <small class="fw-normal"><a href="/subcategory/create" class="text-info"><i class="fas fa-list-ul"></i> Create new subcategory</a></small>
             </div>
           </div>
 
@@ -146,7 +146,7 @@
             </div>
           </div>
 
-          <button type="submit" class="btn bg-gradient-primary mt-3 float-end">Add Data</button>
+          <button type="submit" class="btn bg-gradient-success mt-3 float-end">Edit Data</button>
         </form>
 
       </div>

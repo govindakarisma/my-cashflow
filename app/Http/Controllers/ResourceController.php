@@ -47,7 +47,7 @@ class ResourceController extends Controller
 
         Resource::create($validatedData);
 
-        return redirect('/resource')->with('toast_success', 'Add source of fundsn has Successful!');
+        return redirect('/resource')->with('toast_success', 'Add source of funds ' . $request->name . ' has Successful!');
     }
 
     /**
