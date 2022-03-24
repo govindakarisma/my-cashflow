@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+@include('sweetalert::alert')
 @include('components.cardheader')
 <div class="row mt-4">
   <div class="col-lg-6 mb-lg-0 mb-4">

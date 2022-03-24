@@ -47,7 +47,7 @@ class ResourceController extends Controller
 
         Resource::create($validatedData);
 
-        return redirect('/resource')->with('toast_success', 'Add source of funds ' . $request->name . ' has Successful!');
+        return redirect('/resource')->with('toast_success', 'Add Category ' . $request->name . ' has Successful!');
     }
 
     /**
@@ -96,7 +96,7 @@ class ResourceController extends Controller
 
         Resource::where('id', $resource->id)->update($validatedData);
 
-        return redirect('/resource')->with('toast_success', 'Berhasil Mengubah <br>' . $resource->name);
+        return redirect('/resource')->with('toast_success', 'Edit Category <br>' . $resource->name . ' to ' . $request->name . ' has Successful!');
     }
 
     /**
@@ -109,6 +109,6 @@ class ResourceController extends Controller
     {
         Resource::destroy($resource->id);
 
-        return redirect('/resource')->with('toast_success', 'Berhasil Menghapus <br>' . $resource->name);
+        return redirect('/resource')->with('toast_success', 'Delete Category ' . $resource->name . ' has Successful!');
     }
 }

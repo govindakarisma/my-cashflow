@@ -33,6 +33,8 @@
   @yield('delete-modal')
   @yield('import-modal')
 
+  @include('.components.logout-modal')
+
   @stack('script-bottom-start')
   <script src="/template-assets/js/core/popper.min.js"></script>
   <script src="/template-assets/js/core/bootstrap.min.js"></script>

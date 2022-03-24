@@ -22,7 +22,7 @@
           <div class="row g-4 mb-3">
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="text" name="cfid" class="form-control @error('cfid') is-invalid @enderror" id="cfid" placeholder="CFID" value="{{ old('cfid', $cashflow->cfid) }}" autofocus>
+                <input type="text" name="cfid" class="form-control @error('cfid') is-invalid @enderror" id="name" placeholder="CFID" value="{{ old('cfid', $cashflow->cfid) }}" onkeyup="createSlug()" autofocus>
                 <label for="cfid">CFID</label>
                 @error('cfid')
                 <div class="invalid-feedback">
@@ -146,7 +146,7 @@
             </div>
           </div>
 
-          <button type="submit" class="btn bg-gradient-success mt-3 float-end">Edit Data</button>
+          <button type="submit" class="btn bg-gradient-success mt-3 float-end">Edit Transaction</button>
         </form>
 
       </div>
@@ -154,3 +154,7 @@
   </div>
 </div>
 @endsection
+
+@push('script-bottom-start')
+<script src="/my-assets/js/slug-generate.js"></script>
+@endpush

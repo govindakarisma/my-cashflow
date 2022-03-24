@@ -22,7 +22,7 @@
           <div class="row g-4 mb-3">
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Reource Name" value="{{ old('name', $resource->name) }}" autofocus>
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Reource Name" value="{{ old('name', $resource->name) }}" onkeyup="createSlug()" autofocus>
                 <label for="name">Resource Name</label>
                 @error('name')
                 <div class="invalid-feedback">
@@ -52,3 +52,7 @@
   </div>
 </div>
 @endsection
+
+@push('script-bottom-start')
+<script src="/my-assets/js/slug-generate.js"></script>
+@endpush

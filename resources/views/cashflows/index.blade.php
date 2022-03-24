@@ -109,7 +109,7 @@
       <div class="card-header pb-0">
         <div class="row">
           <div class="col-6 d-flex align-items-center">
-            <h5>My Cashflow {{date('Y')}}</h5>
+            <h5>My {{ $page }} {{date('Y')}}</h5>
           </div>
           <div class="col-6 text-end">
             <a href="/exportCashflowExcel" class="btn bg-gradient-success me-1"><i class="fas fa-file-excel"></i>&nbsp;&nbsp;Excel</a>

@@ -43,7 +43,7 @@ class CashflowController extends Controller
         $sumCash = sumCredit();
 
         return view('cashflows.index', [
-            "page" => "Cash Flow",
+            "page" => "Cashflow",
             "cashflows" => collect(Cashflow::latest("action_at")->get()),
             "sumCredit" => $sumCash["credit"],
             "sumDebit" => $sumCash["debit"],
@@ -59,7 +59,7 @@ class CashflowController extends Controller
     public function create()
     {
         return view('cashflows.create', [
-            "page" => "Cash Flow - Add Transaction",
+            "page" => "Cashflow - Add Transaction",
             'resources' => collect(Resource::latest()->get()),
             'categories' => collect(Category::latest()->get()),
             'subcategories' => collect(Subcategory::latest()->get())
@@ -111,7 +111,7 @@ class CashflowController extends Controller
     public function edit(Cashflow $cashflow)
     {
         return view('cashflows.edit', [
-            "page" => "Cash Flow - Edit Transaction",
+            "page" => "Cashflow - Edit Transaction",
             "cashflow" => $cashflow,
             "resources" => collect(Resource::latest()->get()),
             "categories" => collect(Category::latest()->get()),

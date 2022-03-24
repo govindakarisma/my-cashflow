@@ -23,7 +23,7 @@
           <div class="icon icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
             <i class="ni ni-money-coins text-success text-sm opacity-10"></i>
           </div>
-          <span class="nav-link-text ms-1">Cash Flow</span>
+          <span class="nav-link-text ms-1">Cashflow</span>
         </a>
       </li>
       <li class="nav-item">
@@ -97,6 +97,6 @@
         </div>
       </div>
     </div>
-    <a href="#" class="btn btn-dark btn-sm w-100">Logout</a>
+    <a class="btn btn-dark btn-sm w-100" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a>
   </div>
 </aside>
