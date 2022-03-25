@@ -59,9 +59,9 @@
         <div class="row">
           <div class="col-8">
             <div class="numbers">
-              <p class="text-sm mb-0 text-uppercase font-weight-bold">My Balance</p>
+              <p class="text-sm mb-0 text-uppercase font-weight-bold">Balance <small><i>(Exc Stock)</i></small></p>
               <h5 class="font-weight-bolder">
-                Rp{{ number_format($sumBalance,0,",",".") }}
+                Rp{{ number_format($sumBalanceExc,0,",",".") }}
               </h5>
               <p class="mb-0">
                 Today
@@ -84,12 +84,13 @@
         <div class="row">
           <div class="col-8">
             <div class="numbers">
-              <p class="text-sm mb-0 text-uppercase font-weight-bold">Another Income</p>
+              <p class="text-sm mb-0 text-uppercase font-weight-bold">Balance <small><i>(All)</i></small></p>
               <h5 class="font-weight-bolder">
-                Rp0
+                Rp{{ number_format($sumBalanceAll,0,",",".") }}
               </h5>
               <p class="mb-0">
-                <span class="text-success text-sm font-weight-bolder">2022</span>
+                Counted Since
+                <span class="text-success text-sm font-weight-bolder">2021</span>
               </p>
             </div>
           </div>
@@ -124,7 +125,6 @@
             <thead>
               <tr>
                 <th scope="col">No</th>
-                <th scope="col">CFID</th>
                 <th scope="col">Date</th>
                 <th scope="col">Resource</th>
                 <th scope="col">Category</th>
@@ -139,7 +139,6 @@
               @foreach($cashflows as $cashflow)
               <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
-                <td>{{ $cashflow->cfid }}</td>
                 <td>{{ date('d F Y', strtotime($cashflow->action_at)) }}</td>
                 <td class="text-center">{{ $cashflow->resource->name }}</td>
                 <td>{{ $cashflow->category->name }}</td>

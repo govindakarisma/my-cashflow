@@ -19,7 +19,7 @@ class CashflowImport implements ToCollection
             Cashflow::create([
                 'cfid' => $tower[0],
                 'slug' => $tower[1],
-                'made_on' => $tower[2],
+                'action_at' => $tower[2],
                 'resource_id' => $tower[3],
                 'category_id' => $tower[4],
                 'subcategory_id' => $tower[5],

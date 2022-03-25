@@ -22,19 +22,22 @@ class CashflowController extends Controller
         {
             $cashflows = collect(Cashflow::all());
 
-            foreach ($cashflows as $cashflow) {
+            foreach ($cashflows->skipWhile('resource_id', 8) as $cashflow) {
                 $credit = $cashflow->whereMonth('action_at', date('m'))->sum('credit');
                 $debit = $cashflow->whereMonth('action_at', date('m'))->sum('debit');
                 $allcred = $cashflow->sum('credit');
                 $alldebt = $cashflow->sum('debit');
+                $alldebtexstock = $cashflow->where('resource_id', "!=", 8)->sum('debit');
             }
 
-            $balance = $alldebt - $allcred;
+            $balanceAll = $alldebt - $allcred;
+            $balanceExc = $alldebtexstock - $allcred;
 
             $sum = [
                 "credit" => $credit,
                 "debit" => $debit,
-                "balance" => $balance
+                "balanceAll" => $balanceAll,
+                "balanceExc" => $balanceExc
             ];
 
             return $sum;
@@ -47,7 +50,8 @@ class CashflowController extends Controller
             "cashflows" => collect(Cashflow::latest("action_at")->get()),
             "sumCredit" => $sumCash["credit"],
             "sumDebit" => $sumCash["debit"],
-            "sumBalance" => $sumCash["balance"],
+            "sumBalanceAll" => $sumCash["balanceAll"],
+            "sumBalanceExc" => $sumCash["balanceExc"],
         ]);
     }
 
